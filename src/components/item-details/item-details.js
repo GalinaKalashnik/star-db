@@ -5,6 +5,17 @@ import SwapiService from "../../services/swapi-service";
 import Spinner from "../spinner/spinner";
 import ErrorButton from "../error-button/error-button";
 
+const Record = ({item, field, label}) => {
+    console.log(item);
+    return (
+        <li className="list-group-item">
+            <span className="term">{label}</span>
+            <span>{item[field]}</span>
+        </li>
+    )
+}
+export {Record}
+
 export default class ItemDetails extends Component {
 
     state = {
@@ -50,7 +61,7 @@ export default class ItemDetails extends Component {
             loading,
             image
         } = this.state;
-
+        console.log(item);
         if(!item) {
             return <span>Select a person from a list</span>
         }
@@ -73,18 +84,11 @@ export default class ItemDetails extends Component {
                 <div className="card-body">
                     <h4>{name}</h4>
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item">
-                            <span className="term">Gender</span>
-                            <span>{gender}</span>
-                        </li>
-                        <li className="list-group-item">
-                            <span className="term">Birth Year</span>
-                            <span>{birth_year}</span>
-                        </li>
-                        <li className="list-group-item">
-                            <span className="term">Eye Color</span>
-                            <span>{eye_color}</span>
-                        </li>
+                        {
+                            React.Children.map( this.props.children, (child) => {
+                                return React.cloneElement ( child, {item})
+                            })
+                        }
                     </ul>
                     <ErrorButton />
                 </div>

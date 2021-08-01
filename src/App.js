@@ -8,7 +8,7 @@ import ErrorButton from "./components/error-button/error-button";
 import ErrorIndicator from "./components/error-indicator/error-indicator";
 import PeoplePage from "./components/people-page/people-page";
 import ItemList from "./components/item-list/item-list";
-import ItemDetails from "./components/item-details/item-details";
+import ItemDetails, {Record} from "./components/item-details/item-details";
 import SwapiService from "./services/swapi-service";
 import Row from "./components/row/row";
 
@@ -41,15 +41,25 @@ class App extends Component {
             <ItemDetails
                 itemId={5}
                 getData={getPerson}
-                getImageUrl={getPersonImage}
-            />
+                getImageUrl={getPersonImage}>
+
+                <Record field="gender" label="Gender" />
+                <Record field="birth_year" label="Birth Year" />
+                <Record field="eye_color" label="Eye Color" />
+            </ItemDetails>
         );
 
         const starshipDetails = (
             <ItemDetails
                 itemId={5}
                 getData={getStarship}
-                getImageUrl={getStarshipImage}/>
+                getImageUrl={getStarshipImage}>
+
+                <Record field="model" label="Model" />
+                <Record field="length" label="Length" />
+                <Record field="passengers" label="Passengers" />
+
+            </ItemDetails>
         );
 
         return (
