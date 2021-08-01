@@ -1,0 +1,15 @@
+.item-list .list-group-item {
+    cursor: pointer;
+}
+
+.item-list {
+    margin: 1rem;
+    background-color: #303030;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.item-list .list-group-item:hover {
+    background-color: #444;
+}
