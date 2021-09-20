@@ -37,18 +37,4 @@ export default class SwapiService {
     getStarship(id) {
         return this.getResource(`/starships/${id}`);
     }
-
 }
-
-// const swapi = new SwapiService();
-//
-// swapi.getAllStarship().then((p) => {
-//     p.forEach((p) => {
-//         console.log(p.name);
-//     })
-//
-// })
-//
-// swapi.getStarship(3).then((p) => {
-//     console.log(p.name);
-// })
