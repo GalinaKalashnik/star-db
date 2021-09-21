@@ -2,15 +2,13 @@ import React, {Component} from 'react';
 import SwapiService from "../../services/swapi-service";
 import './random-planet.css';
 import Spinner from "../spinner/spinner";
-import Header from "../header/header";
-import ItemList from "../item-list/item-list";
-import PersonDetails from "../person-details/person-details";
 import ErrorIndicator from "../error-indicator/error-indicator";
 
 export default class RandomPlanet extends Component {
     constructor() {
         super();
         this.updatePlanet();
+        setInterval(this.updatePlanet, 2500)
     }
 
     swapiService = new SwapiService();
@@ -35,8 +33,8 @@ export default class RandomPlanet extends Component {
         })
     }
 
-    updatePlanet() {
-        const id = 12;
+    updatePlanet = () => {
+        const id = Math.floor(Math.random()*25) + 3;
         this.swapiService
             .getPlanet(id)
             .then(this.onPlanetLoaded)
