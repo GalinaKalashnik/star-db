@@ -6,6 +6,8 @@ import SwapiService from "./services/swapi-service";
 import ErrorButton from "./components/error-button/error-button";
 import PeoplePage from "./components/people-page/people-page";
 import ErrorIndicator from "./components/error-indicator/error-indicator";
+import ItemList from "./components/item-list/item-list";
+import PersonDetails from "./components/person-details/person-details";
 
 
 export default class App extends Component {
@@ -32,7 +34,6 @@ export default class App extends Component {
         })
     }
 
-
     render() {
 
         if (this.state.hasError) {
@@ -42,7 +43,7 @@ export default class App extends Component {
         const planet = this.state.showRandomPlanet ?
             <RandomPlanet/> :
             null;
-        
+
         return (
             <div className="stardb-app">
                 <Header/>
@@ -59,8 +60,26 @@ export default class App extends Component {
                 </div>
 
                 <PeoplePage />
-                <PeoplePage />
-                <PeoplePage />
+                <div className="row mb2">
+                    <div className="col-md-6">
+                        <ItemList
+                            onItemSelected={this.onPersonSelected}
+                            getData={this.swapiService.getAllPlanets} />
+                    </div>
+                    <div className="col-md-6">
+                        <PersonDetails personId={this.state.selectedPerson}/>
+                    </div>
+                </div>
+                <div className="row mb2">
+                    <div className="col-md-6">
+                        <ItemList
+                            onItemSelected={this.onPersonSelected}
+                            getData={this.swapiService.getAllStarships} />
+                    </div>
+                    <div className="col-md-6">
+                        <PersonDetails personId={this.state.selectedPerson}/>
+                    </div>
+                </div>
             </div>
         );
     }
