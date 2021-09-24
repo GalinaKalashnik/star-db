@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import './App.css';
 import Header from '../src/components/header/header';
 import RandomPlanet from '../src/components/random-planet/random-planet';
-import ItemList from '../src/components/item-list/item-list';
-import PersonDetails from '../src/components/person-details/person-details';
 import SwapiService from "./services/swapi-service";
+import ErrorButton from "./components/error-button/error-button";
+import PeoplePage from "./components/people-page/people-page";
+import ErrorIndicator from "./components/error-indicator/error-indicator";
 
 
 export default class App extends Component {
@@ -13,7 +14,8 @@ export default class App extends Component {
 
     state = {
         showRandomPlanet: true,
-        selectedPerson: null
+        selectedPerson: null,
+        hasError: false
     };
 
     toggleRandomPlanet = () => {
@@ -24,38 +26,41 @@ export default class App extends Component {
         });
     };
 
-    onPersonSelected = (id) => {
+    componentDidCatch() {
         this.setState({
-            selectedPerson: id
+            hasError: true
         })
     }
 
+
     render() {
+
+        if (this.state.hasError) {
+            return <ErrorIndicator />
+        }
 
         const planet = this.state.showRandomPlanet ?
             <RandomPlanet/> :
             null;
-
-
+        
         return (
             <div className="stardb-app">
                 <Header/>
                 { planet }
 
-                <button
-                    className="toggle-planet btn btn-warning btn-lg random-planet"
-                    onClick={this.toggleRandomPlanet}>
-                    Toggle Random Planet
-                </button>
+                <div className="row mb2 button-row">
+                    <button
+                        className="toggle-planet btn btn-warning btn-lg random-planet"
+                        onClick={this.toggleRandomPlanet}>
+                        Toggle Random Planet
+                    </button>
 
-                <div className="row mb2">
-                    <div className="col-md-6">
-                        <ItemList onItemSelected={this.onPersonSelected} />
-                    </div>
-                    <div className="col-md-6">
-                        <PersonDetails personId={this.state.selectedPerson}/>
-                    </div>
+                    <ErrorButton />
                 </div>
+
+                <PeoplePage />
+                <PeoplePage />
+                <PeoplePage />
             </div>
         );
     }
