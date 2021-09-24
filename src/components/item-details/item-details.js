@@ -5,11 +5,11 @@ import SwapiService from "../../services/swapi-service";
 import Spinner from "../spinner/spinner";
 import ErrorButton from "../error-button/error-button";
 
-const Record = ({field, label}) => {
+const Record = ({item, field, label}) => {
     return (
         <li className="list-group-item">
-            <span className="term">{field}</span>
-            <span>{label}</span>
+            <span className="term">{label}</span>
+            <span>{ item[field] }</span>
         </li>
     )
 }
@@ -65,52 +65,28 @@ export default class ItemDetails extends Component {
         }
         const {item, loading, image} = this.state;
         const spinner = loading ? <Spinner /> : null;
-        const content = !loading ? <ItemView  item={item} image={image} props={this.props} /> : null;
-        // const {id, name, gender, birth_year, eye_color } = item;
+        const {id, name, gender, birth_year, eye_color } = item;
         return (
             <div className="item-details card">
                 {spinner}
-                {content}
-                {/*<img className="item-image"*/}
-                {/*     src={image}/>*/}
 
-                {/*<div className="card-body">*/}
-                {/*    <h4>{name}</h4>*/}
-                {/*    <ul className="list-group list-group-flush">*/}
-                {/*        {this.props.children}*/}
-                {/*    </ul>*/}
-                {/*    <ErrorButton />*/}
-                {/*</div>*/}
+                {!loading && (
+                    <React.Fragment>
+                        <img className="item-image" src={image}/>
+                        <div className="card-body">
+                            <h4>{name}</h4>
+                            <ul className="list-group list-group-flush">
+                                {
+                                    React.Children.map(this.props.children, (child) => {
+                                        return React.cloneElement( child, {item});
+                                    })
+                                }
+                            </ul>
+                            <ErrorButton />
+                        </div>
+                    </React.Fragment>
+                )}
             </div>
         )
     }
 }
-
-
-const ItemView = (item) => {
-    console.log(item);
-    const {id, name, gender, birth_year, eye_color } = item.item;
-    const image = item.image;
-    const props = item.props;
-
-    console.log(props);
-    return (
-        <React.Fragment>
-            <img className="item-image"
-                 src={image}/>
-
-            <div className="card-body">
-                <h4>{name}</h4>
-                <ul className="list-group list-group-flush">
-                    {
-                        React.Children.map(props.children, (child) => {
-                            return child;
-                        })
-                    }
-                </ul>
-                <ErrorButton />
-            </div>
-        </React.Fragment>
-    );
-};
-

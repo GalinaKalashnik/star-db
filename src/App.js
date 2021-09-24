@@ -61,7 +61,21 @@ export default class App extends Component {
             <ItemDetails
                 itemId={5}
                 getData = {this.swapiService.getStarship}
-                getImageUrl = {this.swapiService.getStarshipImage} />
+                getImageUrl = {this.swapiService.getStarshipImage}>
+                <Record field="model" label="Model" />
+                <Record field="length" label="Length" />
+                <Record field="cost_in_credits" label="Coast" />
+            </ItemDetails>
+        )
+
+        const planetDetails = (
+            <ItemDetails
+                itemId={5}
+                getData = {this.swapiService.getPlanet}
+                getImageUrl = {this.swapiService.getPlanetImage}>
+                <Record field="name" label="Name" />
+                <Record field="diameter" label="Diameter" />
+            </ItemDetails>
         )
 
         return (
@@ -83,6 +97,7 @@ export default class App extends Component {
                 <Row
                     left={personDetails}
                     right={starshipDetails} />
+                <Row left={planetDetails} />
                 {/*<PeoplePage />*/}
                 {/*<div className="row mb2">*/}
                 {/*    <div className="col-md-6">*/}
