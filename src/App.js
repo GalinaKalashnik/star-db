@@ -98,6 +98,27 @@ export default class App extends Component {
                     left={personDetails}
                     right={starshipDetails} />
                 <Row left={planetDetails} />
+
+                <ItemList
+                    getData={this.swapiService.getAllPeople}
+                    onItemSelected={() => {}}>
+
+                    { ({name}) => <span>{name}</span> }
+                </ItemList>
+
+                <ItemList
+                    getData={this.swapiService.getAllPlanets}
+                    onItemSelected={() => {}}>
+
+                    { ({name}) => <span>{name}</span> }
+                </ItemList>
+
+                <ItemList
+                    getData={this.swapiService.getAllStarships}
+                    onItemSelected={() => {}}>
+
+                    { ({name}) => <span>{name}</span> }
+                </ItemList>
                 {/*<PeoplePage />*/}
                 {/*<div className="row mb2">*/}
                 {/*    <div className="col-md-6">*/}
