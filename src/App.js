@@ -4,11 +4,22 @@ import Header from '../src/components/header/header';
 import RandomPlanet from '../src/components/random-planet/random-planet';
 import SwapiService from "./services/swapi-service";
 import ErrorButton from "./components/error-button/error-button";
-import PeoplePage from "./components/people-page/people-page";
+
 import ErrorIndicator from "./components/error-indicator/error-indicator";
-import ItemList from "./components/item-list/item-list";
+
 import ItemDetails, {Record} from "./components/item-details/item-details";
 import Row from "./components/row";
+import {
+    PersonList,
+    PlanetList,
+    StarshipList
+} from "./components/sw-components/item-lists";
+
+import {
+    PersonDetails,
+    PlanetDetails,
+    StarshipDetails
+} from "./components/sw-components/details";
 
 
 export default class App extends Component {
@@ -46,36 +57,15 @@ export default class App extends Component {
             null;
 
         const personDetails = (
-            <ItemDetails
-                itemId={11}
-                getData = {this.swapiService.getPerson}
-                getImageUrl = {this.swapiService.getPersonImage}>
-
-                <Record field="gender" label="Gender" />
-                <Record field="eye_color" label="Eye color" />
-
-            </ItemDetails>
+            <PersonDetails itemId={11} />
         )
 
         const starshipDetails = (
-            <ItemDetails
-                itemId={5}
-                getData = {this.swapiService.getStarship}
-                getImageUrl = {this.swapiService.getStarshipImage}>
-                <Record field="model" label="Model" />
-                <Record field="length" label="Length" />
-                <Record field="cost_in_credits" label="Coast" />
-            </ItemDetails>
+            <StarshipDetails itemId={5} />
         )
 
         const planetDetails = (
-            <ItemDetails
-                itemId={5}
-                getData = {this.swapiService.getPlanet}
-                getImageUrl = {this.swapiService.getPlanetImage}>
-                <Record field="name" label="Name" />
-                <Record field="diameter" label="Diameter" />
-            </ItemDetails>
+            <PlanetDetails itemId={5} />
         )
 
         return (
@@ -99,26 +89,17 @@ export default class App extends Component {
                     right={starshipDetails} />
                 <Row left={planetDetails} />
 
-                <ItemList
-                    getData={this.swapiService.getAllPeople}
-                    onItemSelected={() => {}}>
-
+                <PersonList>
                     { ({name}) => <span>{name}</span> }
-                </ItemList>
+                </PersonList>
 
-                <ItemList
-                    getData={this.swapiService.getAllPlanets}
-                    onItemSelected={() => {}}>
-
+                <PlanetList>
                     { ({name}) => <span>{name}</span> }
-                </ItemList>
+                </PlanetList>
 
-                <ItemList
-                    getData={this.swapiService.getAllStarships}
-                    onItemSelected={() => {}}>
-
+                <StarshipList>
                     { ({name}) => <span>{name}</span> }
-                </ItemList>
+                </StarshipList>
                 {/*<PeoplePage />*/}
                 {/*<div className="row mb2">*/}
                 {/*    <div className="col-md-6">*/}
