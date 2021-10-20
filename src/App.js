@@ -89,17 +89,11 @@ export default class App extends Component {
                     right={starshipDetails} />
                 <Row left={planetDetails} />
 
-                <PersonList>
-                    { ({name}) => <span>{name}</span> }
-                </PersonList>
+                <PersonList/>
 
-                <PlanetList>
-                    { ({name}) => <span>{name}</span> }
-                </PlanetList>
+                <PlanetList />
 
-                <StarshipList>
-                    { ({name}) => <span>{name}</span> }
-                </StarshipList>
+                <StarshipList/>
                 {/*<PeoplePage />*/}
                 {/*<div className="row mb2">*/}
                 {/*    <div className="col-md-6">*/}
