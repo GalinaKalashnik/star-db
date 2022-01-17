@@ -15,7 +15,7 @@ const ItemList = (props) => {
                 onClick={() => onItemSelected(id)}>
                 {label}
             </li>
-        )
+        );
     });
 
     return (

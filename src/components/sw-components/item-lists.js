@@ -1,7 +1,6 @@
 import React from 'react';
 import ItemList from "../item-list/item-list";
 import withData from "../hoc-helpers/with-data";
-import SwapiService from "../../services/swapi-service";
 import withSwapiService from "../hoc-helpers/with-swapi-service";
 
 const withChildrenFunction = (Wrapped, fn) => {

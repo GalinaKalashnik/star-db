@@ -69,7 +69,7 @@ export default class ItemDetails extends Component {
 
                 {!loading && (
                     <React.Fragment>
-                        <img className="item-image" src={image}/>
+                        <img className="item-image" src={image} alt={image} />
                         <div className="card-body">
                             <h4>{name}</h4>
                             <ul className="list-group list-group-flush">
