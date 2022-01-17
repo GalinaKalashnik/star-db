@@ -54,7 +54,7 @@ export default class App extends Component {
         }
 
         const planet = this.state.showRandomPlanet ?
-            <RandomPlanet/> :
+            <RandomPlanet updateInterval={3000}/> :
             null;
 
         return (
