@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import PropTypes from "prop-types";
 import Header from '../src/components/header/header';
 import RandomPlanet from '../src/components/random-planet/random-planet';
 import SwapiService from "./services/swapi-service";
@@ -54,7 +55,7 @@ export default class App extends Component {
         }
 
         const planet = this.state.showRandomPlanet ?
-            <RandomPlanet updateInterval={false}/> :
+            <RandomPlanet updateInterval={3000}/> :
             null;
 
         return (
